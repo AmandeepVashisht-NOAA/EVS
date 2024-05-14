@@ -1,7 +1,7 @@
 #!/bin/bash -e
 ##---------------------------------------------------------------------------
 ##---------------------------------------------------------------------------
-## NCEP EMC VERIFICATION SYSTEM (SEASONAL CFS PREP)
+## NCEP EMC VERIFICATION SYSTEM (SEASONAL OBS PREP)
 ##
 ## CONTRIBUTORS: Aman Vashisht, amandeep.vashisht@noaa.gov, NOAA/NWS/NCEP/EMC-VPPPGB
 ## PURPOSE: Set up configurations to run user requested seasonal prep step
@@ -17,16 +17,6 @@ echo "BEGIN: $(basename ${BASH_SOURCE[0]})"
 ####################################################
 # GENERAL SETTINGS APPLIED TO ALL USE CASES
 ####################################################
-## FORECAST MODEL SETTINGS
-#model_list:             model names
-#model_dir_list:         directory path to model forecast files
-#model_prep_dir_list:    directory path to model prep data files
-#model_file_format_list: file format of model files
-export model_list="$MODELNAME"
-export model_dir_list="$COMINcfs"
-export model_prep_dir_list="$COMOUT.$INITDATE"
-export model_file_format_list="{init?fmt=%2H}"
-export cfs_file_type="pgbf flxf"
 ## OUTPUT DATA SETTINGS
 #OUTPUTROOT: base output directory
 export OUTPUTROOT="$DATAROOT/$STEP"
@@ -41,9 +31,9 @@ export make_met_data_by="INIT"
 # SETTINGS FOR USE CASES
 ####################################################
 export inithour_list="00"
-export vhr_list="00 06 12 18" #Change for CFS monthly.....
-export fhr_min="00" #Change for CFS
-export fhr_max="840" # Change for CFS to 2160
+export vhr_list="00 12" #Change?
+export fhr_min="00" #Change?
+export fhr_max="840" #Change to 2160?
 export gather_by="INIT"
 
 echo "END: $(basename ${BASH_SOURCE[0]})"
