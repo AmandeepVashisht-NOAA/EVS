@@ -174,37 +174,39 @@ if [ $modnam = gefs ] ; then
     if [ -e ${pat0} ]; then rm ${pat0}; fi
     >${pat0}
 
-    for level in 10 50 100 200 250 300 400 500 700 850 925 1000 ; do
-         echo "UGRD:$level mb" >> ${pat0}
-         echo "VGRD:$level mb" >> ${pat0}
-    done
+   # for level in 10 50 100 200 250 300 400 500 700 850 925 1000 ; do
+   #      echo "UGRD:$level mb" >> ${pat0}
+   #      echo "VGRD:$level mb" >> ${pat0}
+   # done
     # Upper air
-    echo "HGT:" >> ${pat0}
-    echo "TMP:" >> ${pat0} 
-    echo "UGRD:10 m" >> ${pat0}
-    echo "VGRD:10 m" >> ${pat0}
-    echo "RH:" >> ${pat0}
+    echo "HGT:500 mb" >> ${pat0}
+    echo "TMP:2 m above ground" >> ${pat0} 
+    #echo "UGRD:10 m" >> ${pat0}
+    #echo "VGRD:10 m" >> ${pat0}
+    #echo "RH:" >> ${pat0}
     # Surface
-    echo "TCDC:" >> ${pat0}
+    #echo "TCDC:" >> ${pat0}
     echo "APCP:" >> ${pat0}
-    echo "WEASD:" >> ${pat0}
-    echo "SNOD:" >> ${pat0}
-    echo "PRMSL:" >> ${pat0}
+    #echo "WEASD:" >> ${pat0}
+    #echo "SNOD:" >> ${pat0}
+    #echo "PRMSL:" >> ${pat0}
 
     # Upper from CVC
     if [ -e ${pat1} ]; then rm ${pat1}; fi
     >${pat1}
-    echo "DPT:2 m" >> ${pat1}
-    echo "VIS:surface" >> ${pat1}
-    echo "CAPE:surface" >> ${pat1}
-    echo "HGT:cloud ceiling" >> ${pat1}
-    echo "ICEC:surface" >> ${pat1}
+    #echo "DPT:2 m" >> ${pat1}
+    #echo "VIS:surface" >> ${pat1}
+    #echo "CAPE:surface" >> ${pat1}
+    #echo "HGT:cloud ceiling" >> ${pat1}
+    #echo "ICEC:surface" >> ${pat1}
     echo "TMP:surface" >> ${pat1}
 
 
   for ihour in $gens_ihour  ; do
-    origin=$COMINgefs/gefs.$vday/$ihour/atmos/pgrb2ap5
-    origin_cvc=$COMINgefs/gefs.$vday/$ihour/atmos/pgrb2bp5
+    #origin=$COMINgefs/gefs.$vday/$ihour/atmos/pgrb2ap5
+    #origin_cvc=$COMINgefs/gefs.$vday/$ihour/atmos/pgrb2bp5
+    origin=$COMINgefs/gefs.$vday/$ihour/atmos
+    origin_cvc=$COMINgefs/gefs.$vday/$ihour/atmos
     mbr=1
     while [ $mbr -le $total ] ; do
       mb=$mbr

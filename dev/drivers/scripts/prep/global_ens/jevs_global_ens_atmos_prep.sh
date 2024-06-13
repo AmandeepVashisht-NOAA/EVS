@@ -9,7 +9,8 @@
 
 set -x
 export OMP_NUM_THREADS=1
-export HOMEevs=/lfs/h2/emc/vpppg/noscrub/${USER}/EVS
+#export HOMEevs=/lfs/h2/emc/vpppg/noscrub/${USER}/EVS
+export HOMEevs=/lfs/h2/emc/vppg/noscrub/${USER}}/feature_WPC_PGC_GEFS/EVS
 source $HOMEevs/versions/run.ver
 
 export envir=prod
@@ -32,15 +33,20 @@ export KEEPDATA=YES
 #This var is only for testing, if not set, then run operational 
 
 export vhr=00
-export COMIN=/lfs/h2/emc/vpppg/noscrub/${USER}/$NET/$evs_ver_2d
-export COMOUT=/lfs/h2/emc/vpppg/noscrub/${USER}/$NET/$evs_ver_2d
+#export COMIN=/lfs/h2/emc/vpppg/noscrub/${USER}/$NET/$evs_ver_2d
+export COMIN=/lfs/h2/emc/pgctemp
+export COMINgefs=/lfs/h2/emc/pgctemp/alicia.bentley/nodd_output
+export COMINgfs=/lfs/h2/emc/pgctemp/analyses
+export COMINccpa=/lfs/h2/emc/pgctemp/analyses
+export COMINobsproc=/lfs/h2/emc/pgctemp/analyses
+export COMOUT=/lfs/h2/emc/vpppg/noscrub/${USER}/wpc_pgc/$NET/$evs_ver_2d
 export DATAROOT=/lfs/h2/emc/stmp/${USER}/evs_test/$envir/tmp
 
 export job=${PBS_JOBNAME:-jevs_${MODELNAME}_${VERIF_CASE}_${STEP}}
 export jobid=$job.${PBS_JOBID:-$$}
 
 #export SENDMAIL=YES
-export MAILTO='alicia.bentley@noaa.gov,steven.simon@noaa.gov' 
+export MAILTO='amandeep.vashisht@noaa.gov,shannon.shields@noaa.gov' 
 
 if [ -z "$MAILTO" ]; then
    echo "MAILTO variable is not defined. Exiting without continuing."

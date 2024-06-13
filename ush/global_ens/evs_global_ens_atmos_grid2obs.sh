@@ -70,7 +70,8 @@ if [ $modnam = gefs ] ; then
   #***************************************
   #fields: types of fields to be verified
   #**************************************
-  fields="sfc profile cloud upper"
+  #fields="sfc profile cloud upper"
+   fields="sfc profile"
   validhours="00 06 12 18"
 elif [ $modnam = cmce ] ; then
   mbrs=20

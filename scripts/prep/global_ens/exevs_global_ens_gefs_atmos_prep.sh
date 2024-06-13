@@ -38,26 +38,26 @@ export get_anl=${get_anl:-'yes'}
 export get_prepbufr=${get_prepbufr:-'yes'}
 export get_ccpa=${get_ccpa:-'yes'}
 export get_gefs=${get_gefs:-'yes'}
-export get_ecme=${get_ecme:-'yes'}
-export get_cmce=${get_cmce:-'yes'}
+export get_ecme=${get_ecme:-'no'}
+export get_cmce=${get_cmce:-'no'}
 export get_naefs=${get_naefs:-'no'}
 export get_gefs_apcp06h=${get_gefs_apcp06h:-'no'}
-export get_cmce_apcp06h=${get_cmce_apcp06h:-'yes'}
+export get_cmce_apcp06h=${get_cmce_apcp06h:-'no'}
 export get_ecme_apcp06h=${get_ecme_apcp06h:-'no'}
 export get_gefs_apcp24h=${get_gefs_apcp24h:-'yes'}
-export get_cmce_apcp24h=${get_cmce_apcp24h:-'yes'}
-export get_ecme_apcp24h=${get_ecme_apcp24h:-'yes'}
-export get_gefs_snow24h=${get_gefs_snow24h:-'yes'}
-export get_cmce_snow24h=${get_cmce_snow24h:-'yes'}
-export get_ecme_snow24h=${get_ecme_snow24h:-'yes'}
-export get_nohrsc24h=${get_nohrsc24h:-'yes'}
-export get_gefs_icec=${get_gefs_icec:-'yes'}
-export get_gefs_icec24h=${get_gefs_icec24h:-'yes'}
-export get_gfs=${get_gfs:-'yes'}
-export get_osi_saf=${get_osi_saf:-'yes'}
+export get_cmce_apcp24h=${get_cmce_apcp24h:-'no'}
+export get_ecme_apcp24h=${get_ecme_apcp24h:-'no'}
+export get_gefs_snow24h=${get_gefs_snow24h:-'no'}
+export get_cmce_snow24h=${get_cmce_snow24h:-'no'}
+export get_ecme_snow24h=${get_ecme_snow24h:-'no'}
+export get_nohrsc24h=${get_nohrsc24h:-'no'}
+export get_gefs_icec=${get_gefs_icec:-'no'}
+export get_gefs_icec24h=${get_gefs_icec24h:-'no'}
+export get_gfs=${get_gfs:-'no'}
+export get_osi_saf=${get_osi_saf:-'no'}
 export get_forecast=${get_forecast:-'yes'}
-export get_ghrsst=${get_ghrsst:-'yes'}
-export get_gefs_sst24h=${get_gefs_sst24h:-'yes'}
+export get_ghrsst=${get_ghrsst:-'no'}
+export get_gefs_sst24h=${get_gefs_sst24h:-'no'}
 
 export vday=$INITDATE
 
@@ -83,8 +83,8 @@ fi
 if [ $get_anl = yes ] ; then
  $USHevs/${COMPONENT}/evs_get_gens_${RUN}_data.sh gfsanl
  export err=$?; err_chk
- $USHevs/${COMPONENT}/evs_get_gens_${RUN}_data.sh cmcanl
- export err=$?; err_chk
+ #$USHevs/${COMPONENT}/evs_get_gens_${RUN}_data.sh cmcanl
+ #export err=$?; err_chk
 fi
 
 if [ $get_prepbufr = yes ] ; then
