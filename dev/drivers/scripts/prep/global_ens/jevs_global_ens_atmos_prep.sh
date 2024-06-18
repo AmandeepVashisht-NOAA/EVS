@@ -10,7 +10,7 @@
 set -x
 export OMP_NUM_THREADS=1
 #export HOMEevs=/lfs/h2/emc/vpppg/noscrub/${USER}/EVS
-export HOMEevs=/lfs/h2/emc/vppg/noscrub/${USER}}/feature_WPC_PGC_GEFS/EVS
+export HOMEevs=/lfs/h2/emc/vpppg/noscrub/${USER}}/feature_WPC_PGC_GEFS/EVS
 source $HOMEevs/versions/run.ver
 
 export envir=prod
