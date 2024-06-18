@@ -18,11 +18,12 @@ cd $DATA
 
 
 # Run setpdy and initialize PDY variables
-setpdy.sh 
-. $DATA/PDY 
+#setpdy.sh 
+#. $DATA/PDY
+PDY=20220401 
 
 if [ $RUN = atmos ] || [ $RUN = headline ]; then
-  export INITDATE=${INITDATE:-$PDYm2}
+  export INITDATE=${INITDATE:-$PDY}
 fi
 
 
