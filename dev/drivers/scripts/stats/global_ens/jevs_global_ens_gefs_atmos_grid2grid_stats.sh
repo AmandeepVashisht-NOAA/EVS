@@ -34,8 +34,9 @@ evs_ver_2d=$(echo $evs_ver | cut -d'.' -f1-2)
 export KEEPDATA=YES
 
 export vhr=00
-export COMIN=/lfs/h2/emc/pgctemp
+export COMIN=/lfs/h2/emc/vpppg/noscrub/amandeep.vashisht/wpc_pgc/evs/v2.0
 export COMOUT=/lfs/h2/emc/vpppg/noscrub/${USER}/wpc_pgc/$NET/$evs_ver_2d
+export FIXevs=/lfs/h2/emc/vpppg/noscrub/emc.vpppg/verification/EVS_fix
 export DATAROOT=/lfs/h2/emc/stmp/${USER}/evs_test/$envir/tmp
 export job=${PBS_JOBNAME:-jevs_${MODELNAME}_${VERIF_CASE}_${STEP}}
 export jobid=$job.${PBS_JOBID:-$$}

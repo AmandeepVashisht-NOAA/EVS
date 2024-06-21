@@ -18,13 +18,13 @@ cd $DATA
 
 
 # Run setpdy and initialize PDY variables
-setpdy.sh
-. $DATA/PDY
+#setpdy.sh
+#. $DATA/PDY
+PDY=20220401
 
 if [ $RUN = atmos ] || [ $RUN = wmo ] || [ $RUN = headline ] ; then
-  export VDATE=${VDATE:-$PDYm2}
+  export VDATE=${VDATE:-$PDY}
 fi
-
 
 export SENDCOM=${SENDCOM:-YES}
 export SENDDBN=${SENDDBN:-YES}
