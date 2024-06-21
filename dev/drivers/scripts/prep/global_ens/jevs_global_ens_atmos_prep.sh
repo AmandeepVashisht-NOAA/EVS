@@ -33,8 +33,8 @@ export KEEPDATA=YES
 #This var is only for testing, if not set, then run operational 
 
 export vhr=00
-#export COMIN=/lfs/h2/emc/vpppg/noscrub/${USER}/$NET/$evs_ver_2d
-export COMIN=/lfs/h2/emc/pgctemp
+export COMIN=/lfs/h2/emc/vpppg/noscrub/${USER}/wpc_pgc/$NET/$evs_ver_2d
+#export COMIN=/lfs/h2/emc/pgctemp
 export COMINgefs=/lfs/h2/emc/pgctemp/gefs_forecasts/nodd_output
 export COMINgfs=/lfs/h2/emc/pgctemp/analyses
 export COMINccpa=/lfs/h2/emc/pgctemp/analyses

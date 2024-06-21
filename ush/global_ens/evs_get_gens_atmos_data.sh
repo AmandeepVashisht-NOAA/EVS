@@ -460,13 +460,13 @@ if [ $modnam = ccpa ] ; then
     nccpa_file=1
     while [ $nccpa_file -le 4 ]; do
         if [ $nccpa_file -eq 1 ]; then
-            source_ccpa_file=${COMOUT}/$STEP/${COMPONENT}/atmos.${vday}/gefs/ccpa.t12z.grid3.06h.f00.grib2
+            source_ccpa_file=${COMIN}/$STEP/${COMPONENT}/atmos.${vday}/gefs/ccpa.t12z.grid3.06h.f00.grib2
         elif [ $nccpa_file -eq 2 ]; then
-            source_ccpa_file=${COMOUT}/$STEP/${COMPONENT}/atmos.${vday}/gefs/ccpa.t06z.grid3.06h.f00.grib2
+            source_ccpa_file=${COMIN}/$STEP/${COMPONENT}/atmos.${vday}/gefs/ccpa.t06z.grid3.06h.f00.grib2
         elif [ $nccpa_file -eq 3 ]; then
-            source_ccpa_file=${COMOUT}/$STEP/${COMPONENT}/atmos.${vday}/gefs/ccpa.t00z.grid3.06h.f00.grib2
+            source_ccpa_file=${COMIN}/$STEP/${COMPONENT}/atmos.${vday}/gefs/ccpa.t00z.grid3.06h.f00.grib2
         elif [ $nccpa_file -eq 4 ]; then
-            source_ccpa_file=${COMOUT}/$STEP/${COMPONENT}/atmos.${vday_1}/gefs/ccpa.t18z.grid3.06h.f00.grib2
+            source_ccpa_file=${COMIN}/$STEP/${COMPONENT}/atmos.${vday_1}/gefs/ccpa.t18z.grid3.06h.f00.grib2
         fi
         if [ -s $source_ccpa_file ]; then
             cpreq -v $source_ccpa_file ${WORK}/ccpa24/ccpa${nccpa_file}
