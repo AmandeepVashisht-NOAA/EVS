@@ -47,22 +47,22 @@ if [ $modnam = gfsanl ]; then
     else
       cpreq -v $COMINgfs/gfs.$vday/${ihour}/atmos/gfs.t${ihour}z.pgrb2.1p00.anl $WORK/gfsanl.t${ihour}z.grid3.f000.grib2
     fi
-    if [ ! -s $COMINgfs/gfs.$vday/${ihour}/atmos/gfs.t${ihour}z.pgrb2.1p00.f000 ]; then
-      echo "WARNING: $COMINgfs/gfs.$vday/${ihour}/atmos/gfs.t${ihour}z.pgrb2.1p00.f000 is not available"
-      if [ $SENDMAIL = YES ]; then
-        export subject="GFS F000 Data Missing for EVS ${COMPONENT}"
-        echo "Warning: No GFS F000 available for ${vday}${ihour}" > mailmsg
-        echo "Missing file is $COMINgfs/gfs.$vday/${ihour}/atmos/gfs.t${ihour}z.pgrb2.1p00.f000" >> mailmsg
-        echo "Job ID: $jobid" >> mailmsg
-        cat mailmsg | mail -s "$subject" $MAILTO
-      fi
-    else
-      GFSf000=$COMINgfs/gfs.$vday/${ihour}/atmos/gfs.t${ihour}z.pgrb2.1p00.f000
-      $WGRIB2  $GFSf000|grep "UGRD:10 m above ground"|$WGRIB2 -i $GFSf000 -grib $WORK/U10_f000.${ihour}
-      cat $WORK/U10_f000.${ihour} >> $WORK/gfsanl.t${ihour}z.grid3.f000.grib2
-      $WGRIB2  $GFSf000|grep "VGRD:10 m above ground"|$WGRIB2 -i $GFSf000 -grib $WORK/V10_f000.${ihour}
-      cat $WORK/V10_f000.${ihour} >> $WORK/gfsanl.t${ihour}z.grid3.f000.grib2
-    fi
+    #if [ ! -s $COMINgfs/gfs.$vday/${ihour}/atmos/gfs.t${ihour}z.pgrb2.1p00.f000 ]; then
+     # echo "WARNING: $COMINgfs/gfs.$vday/${ihour}/atmos/gfs.t${ihour}z.pgrb2.1p00.f000 is not available"
+     #if [ $SENDMAIL = YES ]; then
+       # export subject="GFS F000 Data Missing for EVS ${COMPONENT}"
+       # echo "Warning: No GFS F000 available for ${vday}${ihour}" > mailmsg
+       # echo "Missing file is $COMINgfs/gfs.$vday/${ihour}/atmos/gfs.t${ihour}z.pgrb2.1p00.f000" >> mailmsg
+       # echo "Job ID: $jobid" >> mailmsg
+       # cat mailmsg | mail -s "$subject" $MAILTO
+     #fi
+    #else
+      #GFSf000=$COMINgfs/gfs.$vday/${ihour}/atmos/gfs.t${ihour}z.pgrb2.1p00.f000
+      #$WGRIB2  $GFSf000|grep "UGRD:10 m above ground"|$WGRIB2 -i $GFSf000 -grib $WORK/U10_f000.${ihour}
+      #cat $WORK/U10_f000.${ihour} >> $WORK/gfsanl.t${ihour}z.grid3.f000.grib2
+      #$WGRIB2  $GFSf000|grep "VGRD:10 m above ground"|$WGRIB2 -i $GFSf000 -grib $WORK/V10_f000.${ihour}
+      #cat $WORK/V10_f000.${ihour} >> $WORK/gfsanl.t${ihour}z.grid3.f000.grib2
+    #fi
     if [ $SENDCOM="YES" ] ; then
         if [ -s $WORK/gfsanl.t${ihour}z.grid3.f000.grib2 ]; then
             cp -v $WORK/gfsanl.t${ihour}z.grid3.f000.grib2 $COMOUTgefs/gfsanl.t${ihour}z.grid3.f000.grib2
@@ -233,21 +233,21 @@ if [ $modnam = gefs ] ; then
             cat mailmsg | mail -s "$subject" $MAILTO
           fi
         fi
-        if [ -s $gefs_cvc ]; then
-          [[ -z $grabgefs ]] && grabgefs=${tmpDir}/grabgefs.${ihour}.${mb}.${hhh}
-          [[ -z $x ]] && x=${tmpDir}/x.${ihour}.${mb}.${hhh}
-          $WGRIB2 $gefs_cvc | grep --file=${pat1} | $WGRIB2 -i $gefs_cvc -grib ${x}
-          cat ${x} >> ${grabgefs}
-        else
-          echo "WARNING: $gefs_cvc is not available"
-          if [ $SENDMAIL = YES ]; then
-            export subject="GEFS Member ${mb} F${hhh} Data Missing for EVS ${COMPONENT}"
-            echo "Warning: No GEFS Member ${mb} F${hhh} available for ${vday}${ihour}" > mailmsg
-            echo "Missing file is $gefs_cvc" >> mailmsg
-            echo "Job ID: $jobid" >> mailmsg
-            cat mailmsg | mail -s "$subject" $MAILTO
-          fi
-        fi
+        #if [ -s $gefs_cvc ]; then
+          #[[ -z $grabgefs ]] && grabgefs=${tmpDir}/grabgefs.${ihour}.${mb}.${hhh}
+          #[[ -z $x ]] && x=${tmpDir}/x.${ihour}.${mb}.${hhh}
+          #$WGRIB2 $gefs_cvc | grep --file=${pat1} | $WGRIB2 -i $gefs_cvc -grib ${x}
+          #cat ${x} >> ${grabgefs}
+        #else
+          #echo "WARNING: $gefs_cvc is not available"
+          #if [ $SENDMAIL = YES ]; then
+            #export subject="GEFS Member ${mb} F${hhh} Data Missing for EVS ${COMPONENT}"
+            #echo "Warning: No GEFS Member ${mb} F${hhh} available for ${vday}${ihour}" > mailmsg
+            #echo "Missing file is $gefs_cvc" >> mailmsg
+            #echo "Job ID: $jobid" >> mailmsg
+            #cat mailmsg | mail -s "$subject" $MAILTO
+          #fi
+        #fi
         if [ ! -z $grabgefs ]; then
             if [ -s $grabgefs ]; then
                 $WGRIB2 ${grabgefs} -set_grib_type same -new_grid_winds earth -new_grid ncep grid 003 $WORK/gefs.ens${mb}.t${ihour}z.grid3.f${hhh}.grib2

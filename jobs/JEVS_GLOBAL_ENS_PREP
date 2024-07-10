@@ -20,7 +20,7 @@ cd $DATA
 # Run setpdy and initialize PDY variables
 #setpdy.sh 
 #. $DATA/PDY
-PDY=20220401 
+PDY=20220405 
 
 if [ $RUN = atmos ] || [ $RUN = headline ]; then
   export INITDATE=${INITDATE:-$PDY}
@@ -65,7 +65,7 @@ export COMOUTcmce_bc=${COMOUTcmce_bc:-${COMOUT}/${RUN}.${INITDATE}/cmce_bc}
 if [ $RUN = headline ]; then
   mkdir -p $COMOUTgefs $COMOUTcmce
 elif [ $RUN = atmos ]; then
-  mkdir -p $COMOUTgefs $COMOUTcmce $COMOUTecme $COMOUTosi_saf
+  mkdir -p $COMOUTgefs
   if [ $MODELNAME = naefs ]; then
       mkdir -p $COMOUTgefs_bc $COMOUTcmce_bc
   fi
