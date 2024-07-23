@@ -20,7 +20,7 @@ cd $DATA
 # Run setpdy and initialize PDY variables
 #setpdy.sh
 #. $DATA/PDY
-PDY=20220401
+PDY=20220820
 
 if [ $RUN = atmos ] || [ $RUN = wmo ] || [ $RUN = headline ] ; then
   export VDATE=${VDATE:-$PDY}

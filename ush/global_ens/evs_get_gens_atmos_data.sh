@@ -48,14 +48,14 @@ if [ $modnam = gfsanl ]; then
       cpreq -v $COMINgfs/gfs.$vday/${ihour}/atmos/gfs.t${ihour}z.pgrb2.1p00.anl $WORK/gfsanl.t${ihour}z.grid3.f000.grib2
     fi
     #if [ ! -s $COMINgfs/gfs.$vday/${ihour}/atmos/gfs.t${ihour}z.pgrb2.1p00.f000 ]; then
-     # echo "WARNING: $COMINgfs/gfs.$vday/${ihour}/atmos/gfs.t${ihour}z.pgrb2.1p00.f000 is not available"
-     #if [ $SENDMAIL = YES ]; then
-       # export subject="GFS F000 Data Missing for EVS ${COMPONENT}"
-       # echo "Warning: No GFS F000 available for ${vday}${ihour}" > mailmsg
-       # echo "Missing file is $COMINgfs/gfs.$vday/${ihour}/atmos/gfs.t${ihour}z.pgrb2.1p00.f000" >> mailmsg
-       # echo "Job ID: $jobid" >> mailmsg
-       # cat mailmsg | mail -s "$subject" $MAILTO
-     #fi
+      #echo "WARNING: $COMINgfs/gfs.$vday/${ihour}/atmos/gfs.t${ihour}z.pgrb2.1p00.f000 is not available"
+      #if [ $SENDMAIL = YES ]; then
+        #export subject="GFS F000 Data Missing for EVS ${COMPONENT}"
+        #echo "Warning: No GFS F000 available for ${vday}${ihour}" > mailmsg
+        #echo "Missing file is $COMINgfs/gfs.$vday/${ihour}/atmos/gfs.t${ihour}z.pgrb2.1p00.f000" >> mailmsg
+        #echo "Job ID: $jobid" >> mailmsg
+        #cat mailmsg | mail -s "$subject" $MAILTO
+      #fi
     #else
       #GFSf000=$COMINgfs/gfs.$vday/${ihour}/atmos/gfs.t${ihour}z.pgrb2.1p00.f000
       #$WGRIB2  $GFSf000|grep "UGRD:10 m above ground"|$WGRIB2 -i $GFSf000 -grib $WORK/U10_f000.${ihour}
@@ -216,13 +216,19 @@ if [ $modnam = gefs ] ; then
         hhh=$nfhrs
         typeset -Z3 hhh
         gefs=$origin/gep${mb}.t${ihour}z.pgrb2a.0p50.f${hhh}
-        gefs_cvc=$origin_cvc/gep${mb}.t${ihour}z.pgrb2b.0p50.f${hhh} 
+        #gefs_cvc=$origin_cvc/gep${mb}.t${ihour}z.pgrb2b.0p50.f${hhh} 
         >$WORK/gefs.upper.${ihour}.${mb}.${hhh}
         >$WORK/gefs.sfc.${ihour}.${mb}.${hhh}
         if [ -s $gefs ]; then
           grabgefs=${tmpDir}/grabgefs.${ihour}.${mb}.${hhh}
           x=${tmpDir}/x.${ihour}.${mb}.${hhh}
           $WGRIB2 $gefs     | grep --file=${pat0} | $WGRIB2 -i $gefs     -grib ${grabgefs}
+	  $WGRIB2 ${grabgefs} -set_grib_type same -new_grid_winds earth -new_grid ncep grid 003 $WORK/gefs.ens${mb}.t${ihour}z.grid3.f${hhh}.grib2
+	  if [ $SENDCOM="YES" ] ; then
+	      if [ -s $WORK/gefs.ens${mb}.t${ihour}z.grid3.f${hhh}.grib2 ]; then
+		  cp -v $WORK/gefs.ens${mb}.t${ihour}z.grid3.f${hhh}.grib2 $COMOUTgefs/gefs.ens${mb}.t${ihour}z.grid3.f${hhh}.grib2
+	      fi
+	  fi
         else
           echo "WARNING: $gefs is not available"
           if [ $SENDMAIL = YES ]; then
@@ -248,16 +254,16 @@ if [ $modnam = gefs ] ; then
             #cat mailmsg | mail -s "$subject" $MAILTO
           #fi
         #fi
-        if [ ! -z $grabgefs ]; then
-            if [ -s $grabgefs ]; then
-                $WGRIB2 ${grabgefs} -set_grib_type same -new_grid_winds earth -new_grid ncep grid 003 $WORK/gefs.ens${mb}.t${ihour}z.grid3.f${hhh}.grib2
-            fi
-            if [ $SENDCOM="YES" ] ; then
-                if [ -s $WORK/gefs.ens${mb}.t${ihour}z.grid3.f${hhh}.grib2 ]; then 
-                    cp -v $WORK/gefs.ens${mb}.t${ihour}z.grid3.f${hhh}.grib2 $COMOUTgefs/gefs.ens${mb}.t${ihour}z.grid3.f${hhh}.grib2
-                fi
-            fi
-        fi
+        #if [ ! -z $grabgefs ]; then #Moved lines below to fix fhr loop issue
+            #if [ -s $grabgefs ]; then
+                #$WGRIB2 ${grabgefs} -set_grib_type same -new_grid_winds earth -new_grid ncep grid 003 $WORK/gefs.ens${mb}.t${ihour}z.grid3.f${hhh}.grib2
+            #fi
+            #if [ $SENDCOM="YES" ] ; then
+                #if [ -s $WORK/gefs.ens${mb}.t${ihour}z.grid3.f${hhh}.grib2 ]; then 
+                    #cp -v $WORK/gefs.ens${mb}.t${ihour}z.grid3.f${hhh}.grib2 $COMOUTgefs/gefs.ens${mb}.t${ihour}z.grid3.f${hhh}.grib2
+                #fi
+            #fi
+        #fi
         nfhrs=`expr $nfhrs + 6`
       done # forecast hour
 
@@ -273,7 +279,7 @@ if [ $modnam = gefs ] ; then
   if [ -f $pat0 -a $pat1 ]; then
       rm ${pat0} ${pat1}
   fi
- fi # check if file not existing
+  fi # check if file not existing
 fi
 
 ##############################################################
