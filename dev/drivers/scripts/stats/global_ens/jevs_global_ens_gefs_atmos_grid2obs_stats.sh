@@ -30,7 +30,8 @@ evs_ver_2d=$(echo $evs_ver | cut -d'.' -f1-2)
 export KEEPDATA=YES
 
 export vhr=00
-export COMIN=/lfs/h2/emc/vpppg/noscrub/amandeep.vashisht/wpc_pgc/evs/v2.0
+#export COMIN=/lfs/h2/emc/vpppg/noscrub/amandeep.vashisht/wpc_pgc/evs/v2.0
+export COMIN=/lfs/h2/emc/vpppg/noscrub/${USER}/wpc_pgc/$NET/$evs_ver_2d
 export COMOUT=/lfs/h2/emc/vpppg/noscrub/${USER}/wpc_pgc/$NET/$evs_ver_2d
 export FIXevs=/lfs/h2/emc/vpppg/noscrub/emc.vpppg/verification/EVS_fix
 export DATAROOT=/lfs/h2/emc/stmp/${USER}/evs_test/$envir/tmp
